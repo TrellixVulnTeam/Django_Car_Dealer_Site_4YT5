@@ -1,0 +1,6 @@
+
+@font-face{
+        font-family: 'bremenblack';
+        src: url('../static/logofont.ttf')  format("truetype"),
+        local('bremenblack');
+    }

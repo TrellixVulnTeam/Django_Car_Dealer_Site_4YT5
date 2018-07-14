@@ -1,0 +1,157 @@
+{%load static%}
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Galeri 23</title>
+    <link rel="stylesheet" href="{% static 'bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+</head>
+
+<body>
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark navbar fixed-top ">
+
+        <div class="col-6">
+                <h1 class="navbar-brand" style="font-family: 'bremenblack',Arial;font-size:32px ; color:white; padding-left: 10%;" href="#">
+                    Galeri 23</h1>              
+        </div>
+
+        <button class="navbar-toggler ml-auto" type="button" data-toggle="collapse" data-target="#navbarsExample05" aria-controls="navbarsExample05" aria-expanded="false" aria-label="Toggle navigation">
+             <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarsExample05">
+            <ul class="nav navbar-nav mr-5 w-100 justify-content-end">
+              <li class="nav-item pr-5">
+                <a class="nav-link" href="{% url 'hakkimizda' %}" class="logo-link">Hakkımızda</a>
+              </li>
+              <li class="d-lg-none nav-item pr-5">
+                <a class="nav-link" href="http://www.facebook.com/galeri23" class="logo-link">Facebook Sayfamız</a>
+              </li>
+
+            </ul>
+            <div class="d-none d-lg-block " style="padding-right:30px">
+                <center>
+                    <a href="http://www.facebook.com/galeri23">
+                         <img src="{% static 'fb.png' %}" style="height:25px; " alt="">
+                    </a>
+                       <br>
+                </center>    
+            </div>
+        </div>    
+    </nav>
+
+
+<br>
+<br>
+<br>
+
+    <div class="album pt-5 bg-light">
+        <div class="container">
+          <div class="row">
+
+    {% for araba in arabalar %}
+                <div class="col-md-4">
+                        <div class="card mb-4 box-shadow">
+                          
+                          {%if araba.foto1%}
+                            <a href='arac{{araba.id }}'>
+                             <img class="card-img-top" style="height: 225px; width: 100%; display: block;" src="{{araba.foto1.url}}" data-holder-rendered="true">
+                            </a>
+                          {%endif%}
+                          <div class="card-body"> 
+                            <a href='arac{{araba.id }}'>
+                              <p class="card-text">{{araba.arabaismi}}</p>
+                            </a>
+                            <div class="row">                            
+                                <div class="col-6">
+                                Model:
+                                </div>
+                                <div class="col-6" style="background-color: whitesmoke; ">
+                                  <p class="card-text">{{araba.modeli}}</p>
+                                </div>
+                                <div class="col-6">
+                                    Kilometre:
+                                </div>
+                                <div class="col-6" style="background-color: whitesmoke; ">
+                                    <p class="card-text">{{araba.kilometre}} km</p>
+                                  </div>                                
+                                  <div class="col-6">
+                                      Fiyat:
+                                  </div>
+                                  <div class="col-6" style="background-color: whitesmoke; ">
+                                      <p class="card-text">{{araba.fiyat}} TL</p>
+                                    </div>                                 
+
+                            </div>
+                              
+                            <div class="d-flex justify-content-between align-items-center">
+                              <div class="col-4"></div>
+                              <div class="btn-group col-4">
+                                <a href='arac{{araba.id }}'>
+                                  <button type="button"  class="btn btn-md btn-outline-secondary">İncele</button>
+                                </a>
+                              </div>
+                              <div class="col-4">
+                                  <small class="text-muted">{{araba.datepublished}}</small>
+                              </div>
+
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+        
+    {% endfor %}
+    </div>
+  </div>
+</div>
+
+<div>
+  <center>    
+    <div class="btn-group" role="group" aria-label="Basic example">
+    
+
+    <span class="step-links">
+      {% if arabalar.has_previous %}
+        {% if arabalar.number == 2 %}
+        <a href="/">
+          <button type="button" class="btn btn-dark btn-lg">< İlk sayfa</button>
+        </a>
+        {% else%}
+        <a href="?sayfa={{ arabalar.previous_page_number }}">
+          <button type="button" class="btn btn-dark btn-lg" >< Önceki sayfa</button>
+        </a>
+        {% endif%}
+      {% endif %}
+        
+      <span class="current">
+          <button type="button" class="btn btn-secondary btn-lg" >{{ arabalar.number }}.sayfa</button>
+      </span>
+                
+      {% if arabalar.has_next %}
+      <a href="?sayfa={{ arabalar.next_page_number }}">
+          <button type="button" class="btn btn-dark btn-lg">Sonraki sayfa ></button>
+      </a>
+      {% endif %}
+
+    </span>
+  
+  
+  
+  
+  
+  
+  
+  
+  </div>
+  </center>
+</div>
+
+    <script src="{% static 'jquery.min.js' %}"></script>
+    <script src="{% static 'jquery-3.3.1.min.js'%}"></script>
+    <script src="{% static 'bootstrap.min.js' %}"></script>
+
+</body>
+<br><br><br>
+</html>
